@@ -3,5 +3,10 @@ FILE=$1
 while read NUMBERS;
 do
     factors=($(factor $NUMBERS))
-    echo "$NUMBERS=$(($NUMBERS/${factors[1]}))*${factors[1]}"
+    if [ ${#factors[@]} -eq 2 ]
+    then
+        echo "$NUMBERS=$(($NUMBERS/${factors[1]}))*${factors[1]}"
+    else
+        echo "$NUMBERS=$NUMBERS*1"
+    fi
 done < $FILE
